@@ -116,5 +116,19 @@ def subsets(arr)
 end
 
 def permutations(array)
+  return [array] if array.length <= 1
+  first = array.shift
+  perms = permutations(array)
 
+  total_permutations = []
+
+  perms.each do |el|
+    (0..el.length).each do |i|
+      total_permutations << el[0...i] + [first] + el[i..-1]
+    end
+  end
+
+  total_permutations
 end
+
+p permutations([1,2,3])
